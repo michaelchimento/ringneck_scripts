@@ -79,7 +79,7 @@ def mem_check(ipaddress):
 
 #deletes cloned github repository on pi
 def delete_git(ipaddress):
-    command = "ssh pi@{} sudo rm -rf raspi_tit_scripts/".format(ipaddress)
+    command = "ssh pi@{} sudo rm -rf ringneck_scripts/".format(ipaddress)
     try:
         response = terminal(command)
     except Exception as e:
@@ -102,7 +102,7 @@ def clear_apaporis(ipaddress):
 
 def remove_pycache(ipaddress):
 #clears out all files in apaporis directory
-    command = "ssh pi@{}".format(ipaddress) + " rm -rf raspi_tit_scripts/__pycache__"
+    command = "ssh pi@{}".format(ipaddress) + " rm -rf ringneck_scripts/__pycache__"
     try:
         response = terminal(command)
     except Exception as e:
@@ -114,7 +114,7 @@ def remove_pycache(ipaddress):
 
 def remove_logs(ipaddress):
 #clears out all files in apaporis directory
-    command = "ssh pi@{}".format(ipaddress) + " rm raspi_tit_scripts/logs"
+    command = "ssh pi@{}".format(ipaddress) + " rm ringneck_scripts/logs"
     try:
         response = terminal(command)
     except Exception as e:
@@ -127,7 +127,7 @@ def remove_logs(ipaddress):
 #does a fresh install of repository from github
 def install_git(ipaddress):
     
-    command = "ssh pi@{} git clone https://github.com/michaelchimento/raspi_tit_scripts.git".format(ipaddress)
+    command = "ssh pi@{} git clone https://github.com/michaelchimento/ringneck_scripts.git".format(ipaddress)
     try:
         response = terminal(command)
     except Exception as e:
@@ -139,16 +139,12 @@ def install_git(ipaddress):
 
 #essential to run if a fresh install. make sure launchers are executable
 def chmod_launchers(ipaddress,name):
-    if "Puzzle" in name:
-        launchername = "puzzle_launcher.sh"
-    elif "Social" in name:
+    if "Social" in name:
         launchername = "social_launcher.sh"
-    elif "Observ" in name:
-        launchername = "observ_launcher.sh"
     elif "Feeder" in name:
         launchername = "feeder_launcher.sh"
         
-    command = "ssh pi@{} \'chmod +x raspi_tit_scripts/launchers/{};chmod +x raspi_tit_scripts/launchers/upload_files_launcher.sh\'".format(ipaddress,launchername)
+    command = "ssh pi@{} \'chmod +x ringneck_scripts/launchers/{};chmod +x ringneck_scripts/launchers/upload_files_launcher.sh\'".format(ipaddress,launchername)
     try:
         response = terminal(command)
     except Exception as e:
@@ -160,7 +156,7 @@ def chmod_launchers(ipaddress,name):
 #pulls most recent commit, updating repository on pi
 def git_pull(ipaddress):
     #update pi's with most recent commit
-    command = "ssh pi@{} \"cd raspi_tit_scripts/ && git checkout -- . && git pull\"".format(ipaddress)
+    command = "ssh pi@{} \"cd ringneck_scripts/ && git checkout -- . && git pull\"".format(ipaddress)
     try:
         response = terminal(command)
     except Exception as e:
