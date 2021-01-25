@@ -21,13 +21,13 @@ camera_awb_mode = 'tungsten'
 camera_sharpness = 30
 camera_contrast = 25
 feeder_start = 7
-feeder_end = 18
+feeder_end = 17
 social_start = 7
-social_end = 18
+social_end = 17
 puzzle_start = 7
-puzzle_end = 18
+puzzle_end = 17
 observ_start = 7
-observ_end = 18
+observ_end = 17
 sensitivity_value = 200
 
 def set_exposure_shutter(hour):
