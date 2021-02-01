@@ -99,7 +99,10 @@ with picamera.PiCamera() as camera:
     camera.iso = camera_ISO
     output = StreamingOutput()
     camera.annotate_text = "{}".format(name)
-    camera.start_recording(output, format='mjpeg')
+    if not focus:
+        camera.start_recording(output,resize=(.75*camera.resolution[0],.75*camera.resolution[1]),format='mjpeg')
+    else:
+        camera.start_recording(output,format='mjpeg')
     try:
         if focus:        
             frame_width = camera.zoom[2]*camera.resolution[0]
