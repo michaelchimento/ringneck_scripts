@@ -100,7 +100,7 @@ with picamera.PiCamera() as camera:
     output = StreamingOutput()
     camera.annotate_text = "{}".format(name)
     if not focus:
-        camera.start_recording(output,resize=(.75*camera.resolution[0],.75*camera.resolution[1]),format='mjpeg')
+        camera.start_recording(output,resize=(int(.75*camera.resolution[0]),int(.75*camera.resolution[1])),format='mjpeg')
     else:
         camera.start_recording(output,format='mjpeg')
     try:
