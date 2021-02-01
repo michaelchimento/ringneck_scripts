@@ -89,7 +89,7 @@ with picamera.PiCamera() as camera:
         if "Social" in name:
             camera.resolution = social_camera_resolution
         else:        
-            camera.resolution = camera_resolution
+            camera.resolution = "720p"
     camera.brightness = camera_brightness
     camera.sharpness = camera_sharpness
     camera.contrast = camera_contrast
@@ -102,7 +102,7 @@ with picamera.PiCamera() as camera:
     if not focus and "Social" in name:
         camera.start_recording(output,resize=(int(.4*camera.resolution[0]),int(.4*camera.resolution[1])),format='mjpeg')
     if not focus and "Feeder" in name:
-        camera.start_recording(output,resize=(int(.6*camera.resolution[0]),int(.6*camera.resolution[1])),format='mjpeg')
+        camera.start_recording(output,format='mjpeg')
     else:
         camera.start_recording(output,format='mjpeg')
     try:
@@ -112,9 +112,6 @@ with picamera.PiCamera() as camera:
         elif not focus and "Social" in name:
             frame_width = int(.4*camera.resolution[0])
             frame_height = int(.4*camera.resolution[1])
-        elif not focus and "Feeder" in name:
-            frame_width = int(.6*camera.resolution[0])
-            frame_height = int(.6*camera.resolution[1])
         else:
             frame_width = camera.resolution[0]
             frame_height = camera.resolution[1]
