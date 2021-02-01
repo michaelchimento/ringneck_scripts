@@ -1,6 +1,7 @@
 # exclude everything
 data/*
 logs/*
+rpi_info.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 */__pycache__/
