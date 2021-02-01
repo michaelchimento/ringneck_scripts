@@ -107,6 +107,9 @@ with picamera.PiCamera() as camera:
         if focus:        
             frame_width = camera.zoom[2]*camera.resolution[0]
             frame_height = camera.zoom[3]*camera.resolution[1]
+        elif not focus and "Social" in name:
+            frame_width = int(.4*camera.resolution[0])
+            frame_height = int(.4*camera.resolution[1])
         else:
             frame_width = camera.resolution[0]
             frame_height = camera.resolution[1]
