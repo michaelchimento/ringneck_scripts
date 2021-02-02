@@ -101,7 +101,7 @@ with picamera.PiCamera() as camera:
     camera.annotate_text = "{}".format(name)
     if not focus and "Social" in name:
         camera.start_recording(output,resize=(int(.4*camera.resolution[0]),int(.4*camera.resolution[1])),format='mjpeg')
-    if not focus and "Feeder" in name:
+    elif not focus and "Feeder" in name:
         camera.start_recording(output,format='mjpeg')
     else:
         camera.start_recording(output,format='mjpeg')
