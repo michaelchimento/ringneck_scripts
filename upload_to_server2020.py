@@ -37,7 +37,7 @@ def terminal(command):
 
 ##replace this with appropriate local & remote paths for backup
 copy_from = "/home/pi/APAPORIS/MOVED/"
-copy_to = "/home/pi/mnt/ringnecks/winter_2021/{}".format(name)
+copy_to = "/home/pi/mnt/ringnecks/summer_2021/{}".format(name)
 
 def backup_to_server():
     print("####{} backup_function.py####".format(dt.datetime.now().strftime('%Y-%m-%d_%H_%M')))
@@ -54,14 +54,7 @@ def backup_to_server():
             command = 'mv {}{} {}'.format(copy_from,video,copy_to)
             terminal(command)
         except Exception as e:
-            print(e)
-            print("Error uploading {} to server. Uploading to overflow folder to avoid merge error.".format(video))
-            try:            
-                command = 'mv {}{} {}_overflow/'.format(copy_from,video,copy_to)
-                print(command)
-                terminal(command)
-            except Exception as e:
-                print("A further error has occurred. Manually remove files to save data.")
+            print("Error uploading {} to server. Error {}.".format(video,e))
         else:
             print("{} backed up".format(video))
 
@@ -71,7 +64,6 @@ if __name__=="__main__":
     if not running:
         if not os.path.isdir(copy_to):     
             os.mkdir(copy_to)
-
         backup_to_server()
     else:
         print("backup already running")
