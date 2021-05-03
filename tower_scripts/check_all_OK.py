@@ -73,30 +73,3 @@ for i in range(len(pi_data_table)):
     status += "{} @ {} {}. Memory {}% full. {}.\n".format(pi_data_table[i][0], pi_data_table[i][1], processes[i], memory[i], server_status[i])
 
 print(status)
-
-if email_results:
-    user = 'greti.lab.updates@gmail.com'
-    password = 'greti2019'
-    sent_from = 'greti.lab.updates@gmail.com'
-    to = 'mchimento@ab.mpg.de'
-    subject = 'global pi report'
-    body = status
-    email_text = 'From:{}\nTo:{}\nSubject:{}\n{}'.format(sent_from,to,subject,body)
-
-    try:
-        server = smtplib.SMTP('smtp.gmail.com',587)
-        server.ehlo()
-        server.starttls()
-        server.login(user,password)
-        server.sendmail(sent_from, to, email_text)
-        server.close()
-        print("Email Sent!")
-        
-    except:
-        print("error in check_ok email")
-
-for i in range(len(pi_data_table)):
-    if "NOT" in server_status[i] or "Problem" in processes[i]:
-        reboot(pi_data_table[i][1])
-        pass
-
