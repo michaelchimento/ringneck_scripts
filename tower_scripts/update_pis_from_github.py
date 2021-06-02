@@ -13,7 +13,7 @@ for pi in pi_data_table:
     else:
         kill_python(pi[1])
         git_pull(pi[1])
-        chmod_launchers(pi[1],pi[0])
-        reboot(pi[1])
+        #chmod_launchers(pi[1],pi[0])
+        #reboot(pi[1])
 		
 

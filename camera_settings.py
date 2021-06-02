@@ -20,13 +20,13 @@ camera_exposure_mode = 'auto'
 camera_awb_mode = 'tungsten'
 camera_sharpness = 30
 camera_contrast = 25
-feeder_start = 7
+feeder_start = 6
 feeder_end = 20
-social_start = 7
+social_start = 6
 social_end = 20
-puzzle_start = 7
+puzzle_start = 6
 puzzle_end = 20
-observ_start = 7
+observ_start = 6
 observ_end = 20
 sensitivity_value = 200
 
