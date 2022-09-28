@@ -24,11 +24,6 @@ feeder_start = 6
 feeder_end = 20
 social_start = 6
 social_end = 20
-social_photos_start1 = 8
-social_photos_end1 = 9
-social_photos_start2 = 10
-social_photos_end2 = 17
-social_videos_start = 9
 puzzle_start = 6
 puzzle_end = 20
 observ_start = 6
@@ -53,3 +48,15 @@ def set_exposure_shutter(hour):
         camera_shutter_speed = 3000
 
     return camera_exposure_mode, camera_shutter_speed
+    
+    
+def set_dom_trial(hour):
+
+    if hour < 10 and hour >=9:
+        cam_frame_rate = 30
+    else:
+        cam_frame_rate = 5
+
+    return cam_frame_rate
+    
+

@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-# You need to install PIL to run this script
-# type "sudo apt-get install python-imaging-tk" in an terminal window to do this
-
-import subprocess, socket, os, shutil, time, picamera, signal
+import subprocess, socket, os, shutil, time, picamera, signal, sys
 from io import StringIO
 from datetime import datetime
 from PIL import Image
@@ -13,6 +10,18 @@ from sigterm_exception import *
 filepath = "/home/pi/APAPORIS/CURRENT/"
 moved_path = "/home/pi/APAPORIS/MOVED/"
 filenamePrefix = name
+video_duration = 300
+
+def crop_folder(directory):
+    for item in os.listdir(directory):
+        try:
+            fullpath = directory+"/"+item
+            if os.path.isfile(fullpath):
+                im = Image.open(fullpath)
+                imCrop = im.crop((0,1080/5,1920,1080/5*4))
+                imCrop.save(fullpath, 'JPEG', quality=100)
+        except Exception:
+            raise Exception
 
 def make_video(hour):
     global filepath
@@ -36,16 +45,14 @@ def make_video(hour):
             camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S')        	
             camera.wait_recording(0.5)
         camera.stop_recording()
-        
-        os.rename(filepath + filename, moved_path + filename)
-        
+
 def make_photos(hour):
     global filepath
     global moved_path
     with picamera.PiCamera() as camera:
         camera.rotation = camera_rotation
-        camera.resolution = camera_resolution
-        camera.zoom = feeder_zoom
+        camera.zoom = social_zoom
+        camera.resolution = social_camera_resolution
         camera.brightness = camera_brightness
         camera.sharpness = camera_sharpness
         camera.contrast = camera_contrast
@@ -58,7 +65,7 @@ def make_photos(hour):
         os.mkdir(dir_name)
         camera.annotate_text_size = 15
         camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S:%f')
-        resize_tuple = (int(feeder_resize_scale*camera.resolution[0]),int(feeder_resize_scale*camera.resolution[1]))
+        resize_tuple = (int(resize_scale*camera.resolution[0]),int(resize_scale*camera.resolution[1]))
         try:        
             print("Beginning new photo round")
             for i, filename in enumerate(camera.capture_continuous("{}/{}_".format(dir_name,filenamePrefix)+"{timestamp:%Y-%m-%d-%H-%M-%S-%f}.jpg", resize = resize_tuple)):
@@ -75,16 +82,28 @@ signal.signal(signal.SIGTERM, signal_handler)
 try:
     while True:
         hour = datetime.now().hour
-        if hour >= feeder_start and hour < feeder_end:
+        if (hour >= social_photos_start1 and hour < social_photos_end1) or (hour >= social_photos_start2 and hour < social_photos_end2):
             dir_name = make_photos(hour)
+            #crop_folder(dir_name)
+            shutil.move(dir_name,moved_path)  
+        else if (hour == social_videos_start):      
+            dir_name = make_video(hour)
             shutil.move(dir_name,moved_path)
         else:
             pass
 
 except (SigTermException, KeyboardInterrupt):
     try:
+        #crop_folder(dir_name)
         shutil.move(dir_name,moved_path)
     except:
-        print("failed to move directory")
+        print("failed to crop folder and move directory")
     finally:
         sys.exit()
+
+
+        
+        os.rename(filepath + filename, moved_path + filename)
+
+           
+ 
