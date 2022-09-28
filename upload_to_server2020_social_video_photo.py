@@ -36,22 +36,42 @@ def terminal(command):
         return term_output.decode()
 
 ##replace this with appropriate local & remote paths for backup
-copy_from = "/home/pi/APAPORIS/MOVED/"
-copy_to = "/home/pi/mnt/ringnecks/winter_2022/{}".format(name)
+copy_from_video = "/home/pi/APAPORIS/MOVED/video"
+copy_from_photo = "/home/pi/APAPORIS/MOVED/photo"
+copy_to_video = "/home/pi/mnt/ringnecks/winter_2022/video/{}".format(name)
+copy_to_photo = "/home/pi/mnt/ringnecks/winter_2022/photo/{}".format(name)
 
 def backup_to_server():
     print("####{} backup_function.py####".format(dt.datetime.now().strftime('%Y-%m-%d_%H_%M')))
     #Get a list of files in original folder
-    files_from = os.listdir(copy_from)
+    files_from = os.listdir(copy_from_video)
     #Get a list of files in backup folder
-    files_bup = os.listdir(copy_to)
+    files_bup = os.listdir(copy_to_video)
     files_to_bup = np.setdiff1d(files_from, files_bup)
 
     #Copy Video files
     print("backing up {} files".format(len(files_to_bup)))
     for video in files_to_bup:
         try:
-            command = 'mv {}{} {}'.format(copy_from,video,copy_to)
+            command = 'mv {}{} {}'.format(copy_from_video,video,copy_to_video)
+            terminal(command)
+        except Exception as e:
+            print("Error uploading {} to server. Error {}.".format(video,e))
+        else:
+            print("{} backed up".format(video))
+            
+    print("####{} backup_function.py####".format(dt.datetime.now().strftime('%Y-%m-%d_%H_%M')))
+    #Get a list of files in original folder
+    files_from = os.listdir(copy_from_photo)
+    #Get a list of files in backup folder
+    files_bup = os.listdir(copy_to_photo)
+    files_to_bup = np.setdiff1d(files_from, files_bup)
+
+    #Copy Video files
+    print("backing up {} files".format(len(files_to_bup)))
+    for video in files_to_bup:
+        try:
+            command = 'mv {}{} {}'.format(copy_from_photo,video,copy_to_photo)
             terminal(command)
         except Exception as e:
             print("Error uploading {} to server. Error {}.".format(video,e))

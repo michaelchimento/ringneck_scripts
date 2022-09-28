@@ -8,7 +8,8 @@ from camera_settings import *
 from sigterm_exception import *
 
 filepath = "/home/pi/APAPORIS/CURRENT/"
-moved_path = "/home/pi/APAPORIS/MOVED/"
+moved_path_video = "/home/pi/APAPORIS/MOVED/video"
+moved_path_photo = "/home/pi/APAPORIS/MOVED/photo"
 filenamePrefix = name
 video_duration = 300
 
@@ -25,7 +26,7 @@ def crop_folder(directory):
 
 def make_video(hour):
     global filepath
-    global moved_path
+    global moved_path_video
     with picamera.PiCamera() as camera:
         #change these values in camera_settings on github and push to all pis for quick universal changes
         camera.rotation = camera_rotation
@@ -48,7 +49,7 @@ def make_video(hour):
 
 def make_photos(hour):
     global filepath
-    global moved_path
+    global moved_path_photo
     with picamera.PiCamera() as camera:
         camera.rotation = camera_rotation
         camera.zoom = social_zoom
@@ -85,25 +86,12 @@ try:
         if (hour >= social_photos_start1 and hour < social_photos_end1) or (hour >= social_photos_start2 and hour < social_photos_end2):
             dir_name = make_photos(hour)
             #crop_folder(dir_name)
-            shutil.move(dir_name,moved_path)  
+            shutil.move(dir_name,moved_path_photo)  
         else if (hour == social_videos_start):      
             dir_name = make_video(hour)
-            shutil.move(dir_name,moved_path)
+            shutil.move(dir_name,moved_path_video)
         else:
             pass
-
-except (SigTermException, KeyboardInterrupt):
-    try:
-        #crop_folder(dir_name)
-        shutil.move(dir_name,moved_path)
-    except:
-        print("failed to crop folder and move directory")
-    finally:
-        sys.exit()
-
-
-        
-        os.rename(filepath + filename, moved_path + filename)
 
            
  
