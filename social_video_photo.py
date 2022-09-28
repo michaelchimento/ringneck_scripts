@@ -92,6 +92,5 @@ try:
             shutil.move(dir_name,moved_path_video)
         else:
             pass
-
-           
- 
+except:
+    print("whoops")

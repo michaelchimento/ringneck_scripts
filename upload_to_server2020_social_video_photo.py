@@ -82,8 +82,10 @@ if __name__=="__main__":
     running = checkIfProcessRunning("python")
     print(running)
     if not running:
-        if not os.path.isdir(copy_to):     
-            os.mkdir(copy_to)
+        if not os.path.isdir(copy_to_video):     
+            os.mkdir(copy_to_video)
+        if not os.path.isdir(copy_to_photo):     
+            os.mkdir(copy_to_photo)
         backup_to_server()
     else:
         print("backup already running")
