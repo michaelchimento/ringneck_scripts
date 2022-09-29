@@ -39,6 +39,7 @@ def make_video(hour):
         camera.exposure_mode, _shutter_speed = set_exposure_shutter(hour)
         camera.framerate = camera_framerate
         filename = "{}_{}.h264".format(filenamePrefix,datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+        print("recording " + filename)
         camera.annotate_text_size = 15
         camera.start_recording(filepath + filename)
         start = datetime.now()
