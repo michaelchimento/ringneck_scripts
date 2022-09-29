@@ -82,19 +82,17 @@ def make_photos(hour):
 
 signal.signal(signal.SIGTERM, signal_handler)
 
-make_video(10)
-
-#try:
-#    while True:
-#        hour = datetime.now().hour
-#        if (hour >= social_photos_start1 and hour < social_photos_end1) or (hour >= social_photos_start2 and hour < social_photos_end2):
-#            dir_name = make_photos(hour)
-#            #crop_folder(dir_name)
-#            shutil.move(dir_name,moved_path_photo)  
-#        elif (hour == social_videos_start):      
-#            dir_name = make_video(hour)
-#            shutil.move(dir_name,moved_path_video)
-#        else:
-#            pass
-#except:
-#    traceback.print_exc()
+try:
+    while True:
+        hour = datetime.now().hour
+        if (hour >= social_photos_start1 and hour < social_photos_end1) or (hour >= social_photos_start2 and hour < social_photos_end2):
+            dir_name = make_photos(hour)
+            #crop_folder(dir_name)
+            shutil.move(dir_name,moved_path_photo)  
+        elif (hour == social_videos_start):      
+            dir_name = make_video(hour)
+            shutil.move(dir_name,moved_path_video)
+        else:
+            pass
+except:
+    traceback.print_exc()
