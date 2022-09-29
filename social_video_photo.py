@@ -11,7 +11,7 @@ filepath = "/home/pi/APAPORIS/CURRENT/"
 moved_path_video = "/home/pi/APAPORIS/MOVED/video"
 moved_path_photo = "/home/pi/APAPORIS/MOVED/photo"
 filenamePrefix = name
-video_duration = 300
+video_duration = 30
 
 def crop_folder(directory):
     for item in os.listdir(directory):
@@ -46,6 +46,7 @@ def make_video(hour):
             camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S')        	
             camera.wait_recording(0.5)
         camera.stop_recording()
+    os.rename(filepath + filename, moved_path_video + filename)
 
 def make_photos(hour):
     global filepath
@@ -80,8 +81,7 @@ def make_photos(hour):
 
 signal.signal(signal.SIGTERM, signal_handler)
 
-dir_name = make_video(10)
-shutil.move(dir_name,moved_path_video)
+make_video(10)
 
 #try:
 #    while True:
