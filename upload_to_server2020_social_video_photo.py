@@ -36,8 +36,8 @@ def terminal(command):
         return term_output.decode()
 
 ##replace this with appropriate local & remote paths for backup
-copy_from_video = "/home/pi/APAPORIS/MOVED/video"
-copy_from_photo = "/home/pi/APAPORIS/MOVED/photo"
+copy_from_video = "/home/pi/APAPORIS/MOVED/video/"
+copy_from_photo = "/home/pi/APAPORIS/MOVED/photo/"
 copy_to_video = "/home/pi/mnt/ringnecks/winter_2022/video/{}".format(name)
 copy_to_photo = "/home/pi/mnt/ringnecks/winter_2022/photo/{}".format(name)
 
