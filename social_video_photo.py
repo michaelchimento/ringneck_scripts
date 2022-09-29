@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import subprocess, socket, os, shutil, time, picamera, signal, sys
+import subprocess, socket, os, shutil, time, picamera, signal, sys, traceback
 from io import StringIO
 from datetime import datetime
 from PIL import Image
@@ -96,4 +96,4 @@ shutil.move(dir_name,moved_path_video)
 #        else:
 #            pass
 #except:
-#    print("whoops")
+#    traceback.print_exc()
