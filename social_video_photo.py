@@ -8,7 +8,7 @@ from camera_settings import *
 from sigterm_exception import *
 
 filepath = "/home/pi/APAPORIS/CURRENT/"
-moved_path_video = "/home/pi/APAPORIS/MOVED/video"
+moved_path_video = "/home/pi/APAPORIS/MOVED/video/"
 moved_path_photo = "/home/pi/APAPORIS/MOVED/photo"
 filenamePrefix = name
 video_duration = 30
