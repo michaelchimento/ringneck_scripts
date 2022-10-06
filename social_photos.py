@@ -8,7 +8,7 @@ from camera_settings import *
 from sigterm_exception import *
 
 filepath = "/home/pi/APAPORIS/CURRENT/"
-moved_path = "/home/pi/APAPORIS/MOVED/"
+moved_path = "/home/pi/APAPORIS/MOVED/photo"
 filenamePrefix = name
 
 def crop_folder(directory):
