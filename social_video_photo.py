@@ -90,8 +90,7 @@ try:
             #crop_folder(dir_name)
             shutil.move(dir_name,moved_path_photo)  
         elif (hour == social_videos_start):      
-            dir_name = make_video(hour)
-            shutil.move(dir_name,moved_path_video)
+            make_video(hour)
         else:
             pass
 except:
