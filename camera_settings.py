@@ -5,7 +5,7 @@ from datetime import datetime
 camera_rotation = 0
 camera_resolution = (1920, 1080)
 social_camera_resolution = (3280, 2464)
-camera_color_effects = (128,128)
+camera_color_effects = None
 focus_zoom = (0.25, 0.25, 0.5, 0.5)
 feeder_zoom = (0, 0, 1, 1)
 observ_zoom = (0, 0, 1, 1)
