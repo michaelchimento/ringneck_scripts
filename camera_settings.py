@@ -3,7 +3,7 @@
 from datetime import datetime
 
 camera_rotation = 0
-camera_resolution = (1920, 1080)
+camera_resolution = (1640, 1232)
 social_camera_resolution = (3280, 2464)
 camera_color_effects = None
 focus_zoom = (0.25, 0.25, 0.5, 0.5)
@@ -45,9 +45,12 @@ def set_exposure_shutter(hour):
     elif hour >= 10 and hour < 13:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 1500
-    elif hour >= 13 and hour < 16:
+    elif hour >= 13 and hour < 15:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 2500
+    elif hour >= 15 and hour < 17:
+        camera_exposure_mode = 'auto'
+        camera_shutter_speed = 1000        
     else:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 3000
