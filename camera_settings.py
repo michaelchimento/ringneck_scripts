@@ -48,10 +48,14 @@ def set_exposure_shutter(hour):
     elif hour >= 13 and hour < 15:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 2500
-    elif hour >= 15 and hour < 17:
+    elif hour >= 15 and hour < 16:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 3500
         camera_ISO = 800
+    elif hour >= 16 and hour < 17:
+        camera_exposure_mode = 'auto'
+        camera_shutter_speed = 3500
+        camera_ISO = 1000
     else:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 3000
