@@ -38,7 +38,7 @@ sensitivity_value = 200
 def set_exposure_shutter(hour):
     if hour < 8:
         camera_exposure_mode = 'auto'
-        camera_shutter_speed = 3000   
+        camera_shutter_speed = 3000
     elif hour < 10 and hour >=8:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 2500
@@ -50,7 +50,8 @@ def set_exposure_shutter(hour):
         camera_shutter_speed = 2500
     elif hour >= 15 and hour < 17:
         camera_exposure_mode = 'auto'
-        camera_shutter_speed = 1000        
+        camera_shutter_speed = 3500
+        camera_ISO = 800
     else:
         camera_exposure_mode = 'auto'
         camera_shutter_speed = 3000
