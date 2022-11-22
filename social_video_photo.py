@@ -35,8 +35,7 @@ def make_video(hour):
         camera.sharpness = camera_sharpness
         camera.contrast = camera_contrast
         camera.awb_mode = camera_awb_mode
-        camera.iso = camera_ISO
-        camera.exposure_mode, _shutter_speed = set_exposure_shutter(hour)
+        camera.exposure_mode, _shutter_speed, camera.iso = set_exposure_shutter(hour)
         camera.framerate = camera_framerate
         filename = "{}_{}.h264".format(filenamePrefix,datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
         print("recording " + filename)
