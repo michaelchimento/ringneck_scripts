@@ -17,6 +17,7 @@ camera_brightness = 40
 camera_shutter_speed = 3500
 camera_framerate = 30
 camera_exposure_mode = 'auto'
+camera_shutter_speed = 'auto'
 camera_awb_mode = 'tungsten'
 camera_sharpness = 30
 camera_contrast = 25
