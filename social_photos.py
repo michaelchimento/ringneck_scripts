@@ -35,9 +35,9 @@ def make_photos(hour):
         camera.awb_mode = camera_awb_mode
         camera.color_effects = camera_color_effects
         camera.exposure_mode = camera_exposure_mode
-        camera_shutter_speed = 'auto'
+        #camera_shutter_speed = 'auto'
         camera.iso = camera_ISO
-        #camera.exposure_mode, camera.shutter_speed, camera.iso = set_exposure_shutter(hour)
+        camera.exposure_mode, camera.shutter_speed = set_exposure_shutter(hour)
         time_stamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         dir_name = '{}{}_{}'.format(filepath,filenamePrefix,time_stamp)
         os.mkdir(dir_name)
