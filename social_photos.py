@@ -34,7 +34,7 @@ def make_photos(hour):
         camera.contrast = camera_contrast
         camera.awb_mode = camera_awb_mode
         camera.color_effects = camera_color_effects
-        camera.exposure_mode = camera_exposure_mode
+        #camera.exposure_mode = camera_exposure_mode
         #camera_shutter_speed = 'auto'
         camera.iso = camera_ISO
         camera.exposure_mode, camera.shutter_speed = set_exposure_shutter(hour)
